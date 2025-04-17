@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mypvc3
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs1  # 내가 사용하는 스토리지 클래스
+  resources:
+    requests:
+      storage: 1Gi

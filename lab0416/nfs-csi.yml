@@ -1,0 +1,11 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: dev1-sc
+mountOptions:
+  - nfsvers=4.2
+parameters:
+  server: 211.183.3.99    # nfs server의 ip
+  share: /shared          # dev1-sc를 사용하는 팀은 /shared에 데이터 기록됨
+provisioner: nfs.csi.k8s.io
+reclaimPolicy: Delete     # pod 삭제 시 함께 삭제됨
