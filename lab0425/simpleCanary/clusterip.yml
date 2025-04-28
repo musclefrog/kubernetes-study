@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: web-svc
+spec: 
+  # ingressClassName: nginx
+  type: ClusterIP
+  selector:
+    app: web
+    version:    # <-- 이부분을 조정하여 v1,v2 로 접속되도록 할 예정
+  ports:
+  - port: 80    # cluster-ip 의 포트
+    targetPort: 80  # Pod(nginx[v1], httpd[v2]) 의 포트

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mywebv2
+spec: 
+  replicas: 4     # 컨트롤러는 3개가 맞는지 세어본다!!
+  selector: 
+    matchLabels:  # 어떤 label 이 3개 동작하는지 세어 보겠다!!! 
+      app: web
+      version: v2
+  template: # 여기에서 부터 아래는 Pod
+    metadata:
+      labels:
+        app: web
+        version: v2
+    spec:   # 이 아래로는 container
+      containers:
+        - name: web
+          image: httpd
+          ports:
+          - containerPort: 80

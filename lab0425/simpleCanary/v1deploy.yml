@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mywebv1
+spec:
+  replicas: 3 # 컨트롤러는 3개가 맞는지 세어본다
+  selector: 
+    matchLabels: # 어떤 label이 3개 동작하는지 세어보겠다
+      app: web
+      version: v1 # version을 지정하지 않으면 RR 방식으로 접속한다.
+  template: # 여기서부터 아래는 Pod
+    metadata:
+      labels:
+        app: web
+        version: v1
+    spec: # 이 아래로는 container
+      containers:
+        - name: web
+          image: nginx # v1은 nginx로
+          ports:
+          - containerPort: 80
